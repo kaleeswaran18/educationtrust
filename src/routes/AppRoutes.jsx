@@ -6,7 +6,7 @@ import Contact from "../pages/Contact";
 import Login from "../pages/admin/Login";
 import Logo from "../pages/admin/Logo";
 import Dashboard from "../pages/admin/Dashboard";
-import   Heroslider from '../pages/admin/Heroslider';
+//import   Heroslider from '../pages/admin/Heroslider';
 function App() {
   return (
     <BrowserRouter>
@@ -32,10 +32,10 @@ function App() {
   path="/admin/logo"
   element={<Logo />}
 />
-     <Route
+     {/* <Route
   path="/admin/slider"
   element={<Heroslider />}
-/>
+/> */}
 
       </Routes>
     </BrowserRouter>
