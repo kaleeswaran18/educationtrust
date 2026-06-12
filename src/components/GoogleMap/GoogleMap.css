@@ -1,0 +1,22 @@
+.google-map-section {
+  background: #0c0f12;
+  padding: 40px 0 100px;
+}
+
+.map-wrapper {
+  overflow: hidden;
+  border-radius: 25px;
+  border: 1px solid #222;
+}
+
+.map-wrapper iframe {
+  width: 100%;
+  height: 500px;
+  border: 0;
+}
+
+@media (max-width: 576px) {
+  .map-wrapper iframe {
+    height: 350px;
+  }
+}

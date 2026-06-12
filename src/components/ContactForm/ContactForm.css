@@ -1,0 +1,150 @@
+.contact-form-section {
+  position: relative;
+  margin-top: -110px;
+  z-index: 100;
+  padding-bottom: 100px;
+}
+
+.contact-form-wrapper {
+  width: 92%;
+  max-width: 1320px;
+  margin: auto;
+}
+
+.contact-form-card {
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 65px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.full-width {
+  grid-column: span 2;
+}
+
+.form-group label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #183153;
+  margin-bottom: 10px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  border: none;
+  background: #f6f8fb;
+  border-radius: 16px;
+  padding: 18px 22px;
+  font-size: 15px;
+  color: #222;
+  transition: .3s;
+}
+
+.form-group input {
+  height: 58px;
+}
+
+.form-group textarea {
+  resize: none;
+  min-height: 180px;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #9ca3af;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  background: #fff;
+  box-shadow: 0 0 0 2px #7fded8;
+}
+
+.submit-btn {
+  margin-top: 35px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 16px 34px;
+
+  border: none;
+  border-radius: 50px;
+
+  background: #0c0f12;
+  color: #fff;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  transition: .3s;
+}
+
+.submit-btn:hover {
+  background: #7fded8;
+  color: #111;
+}
+
+@media (max-width:991px) {
+
+  .contact-form-section {
+    margin-top: -60px;
+  }
+
+  .contact-form-card {
+    padding: 40px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .full-width {
+    grid-column: span 1;
+  }
+
+}
+
+@media (max-width:576px) {
+
+  .contact-form-section {
+    margin-top: 30px;
+    padding-bottom: 60px;
+  }
+
+  .contact-form-wrapper {
+    width: 94%;
+  }
+
+  .contact-form-card {
+    padding: 25px;
+    border-radius: 20px;
+  }
+
+  .form-group input {
+    height: 54px;
+  }
+
+  .form-group textarea {
+    min-height: 140px;
+  }
+
+  .submit-btn {
+    width: 100%;
+  }
+
+}
