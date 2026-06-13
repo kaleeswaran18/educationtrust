@@ -11,7 +11,7 @@ const galleryItems = [
     title: "Free Medical Camp",
     category: "Medical & Trust",
     type: "video",
-    url: "/src/assets/images/2.mp4",
+    url: "https://res.cloudinary.com/dbrymrvqu/video/upload/v1781364332/2_online-video-cutter.com_mnejei.mp4",
     tall: true,
   },
   {
@@ -19,7 +19,7 @@ const galleryItems = [
     title: "Community Welfare Program",
     category: "Medical & Trust",
     type: "video",
-    url: "/src/assets/images/3.mp4",
+    url: "https://res.cloudinary.com/dbrymrvqu/video/upload/v1781364389/3_online-video-cutter.com_jrvbug.mp4",
     tall: false,
   },
   {
@@ -27,7 +27,7 @@ const galleryItems = [
     title: "Healthcare Awareness",
     category: "Medical & Trust",
     type: "video",
-    url: "/src/assets/images/4.mp4",
+    url: "https://res.cloudinary.com/dbrymrvqu/video/upload/v1781364382/4_online-video-cutter.com_tj1sk8.mp4",
     tall: false,
   },
   {
@@ -35,7 +35,7 @@ const galleryItems = [
     title: "Medical Outreach",
     category: "Medical & Trust",
     type: "video",
-    url: "/src/assets/images/5.mp4",
+    url: "https://res.cloudinary.com/dbrymrvqu/video/upload/v1781364390/5_online-video-cutter.com_ch8gu4.mp4",
     tall: true,
   },
   {
@@ -43,7 +43,7 @@ const galleryItems = [
     title: "Trust Activities",
     category: "Medical & Trust",
     type: "video",
-    url: "/src/assets/images/6.mp4",
+    url: "https://res.cloudinary.com/dbrymrvqu/video/upload/v1781364386/6_online-video-cutter.com_de8qmp.mp4",
     tall: false,
   },
   {
@@ -51,7 +51,7 @@ const galleryItems = [
     title: "Community Service",
     category: "Medical & Trust",
     type: "video",
-    url: "/src/assets/images/7.mp4",
+    url: "https://res.cloudinary.com/dbrymrvqu/video/upload/v1781364368/7_btxqTOfr_jljeb7.mp4",
     tall: true,
   },
 
@@ -61,7 +61,7 @@ const galleryItems = [
     title: "Medical Camp",
     category: "Medical & Trust",
     type: "image",
-    url: "/src/assets/images/8.jpg",
+    url: "https://res.cloudinary.com/dbrymrvqu/image/upload/v1781362363/8_diaxcm.jpg",
     tall: false,
   },
   {
@@ -69,7 +69,7 @@ const galleryItems = [
     title: "Healthcare Service",
     category: "Medical & Trust",
     type: "image",
-    url: "/src/assets/images/9.jpeg",
+    url: "https://res.cloudinary.com/dbrymrvqu/image/upload/v1781362362/9_ecvwpj.jpg",
     tall: true,
   },
   {
@@ -86,7 +86,7 @@ const galleryItems = [
     title: "Medical Awareness",
     category: "Medical & Trust",
     type: "image",
-    url: "/src/assets/images/12.png",
+    url: "https://res.cloudinary.com/dbrymrvqu/image/upload/v1781362310/12_q1wdjs.jpg",
     tall: true,
   },
   {
@@ -94,7 +94,7 @@ const galleryItems = [
     title: "Patient Care",
     category: "Medical & Trust",
     type: "image",
-    url: "/src/assets/images/13.png",
+    url: "https://res.cloudinary.com/dbrymrvqu/image/upload/v1781362322/13_wvnija.png",
     tall: false,
   },
   {
@@ -102,7 +102,7 @@ const galleryItems = [
     title: "Health Camp",
     category: "Medical & Trust",
     type: "image",
-    url: "/src/assets/images/14.png",
+    url: "https://res.cloudinary.com/dbrymrvqu/image/upload/v1781362321/14_hdgtrs.png",
     tall: true,
   },
   {
@@ -110,7 +110,7 @@ const galleryItems = [
     title: "Surya Trust",
     category: "Medical & Trust",
     type: "image",
-    url: "/src/assets/images/15.png",
+    url: "https://res.cloudinary.com/dbrymrvqu/image/upload/v1781362358/15_syghrz.png",
     tall: false,
   },
 ];
