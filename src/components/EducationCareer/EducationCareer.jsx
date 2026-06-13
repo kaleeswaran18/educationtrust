@@ -34,7 +34,7 @@ function EducationCareer() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7 }}
           >
-            <img src="../../src/assets/images/doctorcheck.png" alt="Placement training" />
+            <img src="https://res.cloudinary.com/dbrymrvqu/image/upload/v1781362339/doctorcheck_mcfkap.png" alt="Placement training" />
           </motion.div>
 
           <div className="career-timeline">

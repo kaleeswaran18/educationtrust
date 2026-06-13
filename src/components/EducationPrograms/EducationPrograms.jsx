@@ -51,7 +51,7 @@ function EducationPrograms() {
             transition={{ duration: 0.7 }}
           >
             <img
-              src="../../src/assets/images/code.png"
+              src="https://res.cloudinary.com/dbrymrvqu/image/upload/v1781362337/code_idyysu.png"
               alt="Education support"
             />
             <div className="edu-programs-badge">

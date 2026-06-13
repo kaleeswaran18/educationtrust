@@ -11,7 +11,7 @@ const stories = [
   quote:
     "Healthcare, education, and employment are the foundation of a progressive society. My mission is to create opportunities so that every youngster in Tamil Nadu can learn, grow, and build a successful future with dignity.",
   highlight: "Healthcare • Education • Employment",
-  image: "../../src/assets/images/doctorcheck.png",
+  image: "https://res.cloudinary.com/dbrymrvqu/image/upload/v1781362339/doctorcheck_mcfkap.png",
 },
   {
     name: "Dr. A.P.J. Abdul Kalam",
@@ -19,7 +19,7 @@ const stories = [
     quote:
       "The ignited minds of the youth are the most powerful resource on the earth.Excellence happens not by accident. It is a process.",
     highlight: "Dream • Learn • Achieve",
-    image: "../../src/assets/images/AbdulKalam.jpg",
+    image: "https://res.cloudinary.com/dbrymrvqu/image/upload/v1781362363/AbdulKalam_y7vvvr.jpg",
   },
   {
     name: "Dr. B.R. Ambedkar",
@@ -27,7 +27,7 @@ const stories = [
     quote:
       "Cultivation of mind should be the ultimate aim of human existence.",
     highlight: "Education Empowers",
-    image: "../../src/assets/images/ambedkar.jpg",
+    image: "https://res.cloudinary.com/dbrymrvqu/image/upload/v1781362309/Ambedkar_us6tpw.jpg",
   },
   {
     name: "Swami Vivekananda",
@@ -35,7 +35,7 @@ const stories = [
     quote:
       "Arise, awake, and stop not until the goal is reached.",
     highlight: "Never Give Up",
-    image: "../../src/assets/images/Swami Vivekanand.jpg",
+    image: "https://res.cloudinary.com/dbrymrvqu/image/upload/v1781362365/Swami_Vivekanand_jdv9pc.jpg",
   },
   {
     name: "Nelson Mandela",
@@ -43,7 +43,7 @@ const stories = [
     quote:
       "Education is the most powerful weapon which you can use to change the world.",
     highlight: "Education Changes Lives",
-    image: "../../src/assets/images/NelsonMandela.jpg",
+    image: "https://res.cloudinary.com/dbrymrvqu/image/upload/v1781362349/NelsonMandela_dbtugn.jpg",
   },
   {
     name: "N. R. Narayana Murthy",
@@ -51,7 +51,7 @@ const stories = [
     quote:
       "Excellence is a continuous journey, never a destination.",
     highlight: "Build Skills • Build Careers",
-    image: "../../src/assets/images/NarayanaMurthy.jpg",
+    image: "https://res.cloudinary.com/dbrymrvqu/image/upload/v1781362343/NarayanaMurthy_vhntnc.jpg",
   },
 ];
 
