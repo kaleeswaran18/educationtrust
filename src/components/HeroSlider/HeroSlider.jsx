@@ -1,125 +1,312 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import "./HeroSlider.css";
+import CTAButton from "../shared/CTAButton";
+import AnimatedCounter from "../shared/AnimatedCounter";
 
-const slides = [
-{
-id: 1,
-tag: "WELCOME TO SURYA TRUST",
-title: "Empowering Communities Through Education",
-description:
-"Supporting students and families with education, healthcare and social welfare programs.",
-image:
-"https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
-},
-{
-id: 2,
-tag: "WELCOME TO SURYA TRUST",
-title: "Healthcare For Everyone",
-description:
-"Providing medical awareness and support for underserved communities.",
-image:
-"https://images.unsplash.com/photo-1576091160550-2173dba999ef",
-},
+const VIDEO_INTERVAL = 7000;
+
+const videos = [
+  {
+    id: 1,
+    category: "Education",
+    src: "https://videos.pexels.com/video-files/7991576/7991576-hd_1920_1080_25fps.mp4",
+    srcSd: "https://videos.pexels.com/video-files/7991576/7991576-sd_640_360_25fps.mp4",
+    poster: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1920&q=80&auto=format&fit=crop",
+  },
+  {
+    id: 2,
+    category: "Training",
+    src: "https://videos.pexels.com/video-files/6153735/6153735-hd_1920_1080_30fps.mp4",
+    srcSd: "https://videos.pexels.com/video-files/6153735/6153735-sd_640_360_30fps.mp4",
+    poster: "https://images.unsplash.com/photo-1551836022-deb49876cc6c?w=1920&q=80&auto=format&fit=crop",
+  },
+  {
+    id: 3,
+    category: "Medical",
+    src: "https://videos.pexels.com/video-files/6270530/6270530-hd_1920_1080_25fps.mp4",
+    srcSd: "https://videos.pexels.com/video-files/6270530/6270530-sd_640_360_25fps.mp4",
+    poster: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1920&q=80&auto=format&fit=crop",
+  },
+  {
+    id: 4,
+    category: "Community",
+    src: "https://videos.pexels.com/video-files/7578612/7578612-hd_1920_1080_30fps.mp4",
+    srcSd: "https://videos.pexels.com/video-files/7578612/7578612-sd_640_360_30fps.mp4",
+    poster: "https://images.unsplash.com/photo-1521737710482-754986c8e335?w=1920&q=80&auto=format&fit=crop",
+  },
+  {
+    id: 5,
+    category: "Volunteer",
+    src: "https://videos.pexels.com/video-files/6646887/6646887-hd_1920_1080_25fps.mp4",
+    srcSd: "https://videos.pexels.com/video-files/6646887/6646887-sd_640_360_25fps.mp4",
+    poster: "https://images.unsplash.com/photo-1559027615-cd4628904348?w=1920&q=80&auto=format&fit=crop",
+  },
 ];
 
-function HeroSlider() {
-const [current, setCurrent] = useState(0);
+const metrics = [
+  { value: "10000+", labelTop: "Students", labelBottom: "Supported" },
+  { value: "2500+", labelTop: "Training", labelBottom: "Programs" },
+  { value: "100+", labelTop: "Medical", labelBottom: "Camps" },
+  { value: "50+", labelTop: "Community", labelBottom: "Programs" },
+];
 
-// Auto Slide Every 5 Seconds
-useEffect(() => {
-const slider = setInterval(() => {
-setCurrent((prev) => (prev + 1) % slides.length);
-}, 5000);
-
-
-return () => clearInterval(slider);
-
-
-}, [current]);
-
-const nextSlide = () => {
-setCurrent((prev) => (prev + 1) % slides.length);
+const fadeDown = {
+  hidden: { opacity: 0, y: -14 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+  },
 };
 
-const prevSlide = () => {
-setCurrent(
-(prev) => (prev - 1 + slides.length) % slides.length
-);
+const fadeUp = {
+  hidden: { opacity: 0, y: 22 },
+  visible: (d = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, delay: d, ease: [0.22, 1, 0.36, 1] },
+  }),
 };
 
-return ( <section className="hero-slider"> <div className="container hero-wrapper">
-{/* Left Content */} <div className="hero-content"> <button className="primary-btn hero-tag">
-{slides[current].tag} </button>
+const wordContainer = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.045, delayChildren: 0.12 } },
+};
 
+const wordReveal = {
+  hidden: { opacity: 0, y: 16, filter: "blur(5px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.48, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
-      <h1>{slides[current].title}</h1>
+const statsContainer = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.07, delayChildren: 0.5 } },
+};
 
-      <p>{slides[current].description}</p>
+const statReveal = {
+  hidden: { opacity: 0, y: 14 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
-      <div className="hero-btn-wrapper">
-        <button className="primary-btn">
-          TALK WITH US
-        </button>
-      </div>
+function HeroMediaLayer({ video, isActive, isAdjacent, useVideo, videoSrc }) {
+  const videoRef = useRef(null);
+  const [videoReady, setVideoReady] = useState(false);
+  const [videoFailed, setVideoFailed] = useState(false);
 
-      {/* Dots */}
-      <div className="slider-dots">
-        {slides.map((_, index) => (
-          <span
-            key={index}
-            className={
-              current === index ? "active" : ""
-            }
-            onClick={() => setCurrent(index)}
-          ></span>
-        ))}
-      </div>
+  useEffect(() => {
+    setVideoReady(false);
+    setVideoFailed(false);
+  }, [video.id]);
 
-      {/* Thumbnails */}
-      <div className="thumbnail-wrapper">
-        {slides.map((item, index) => (
-          <img
-            key={item.id}
-            src={item.image}
-            alt={`thumbnail-${item.id}`}
-            className={
-              current === index
-                ? "active-thumb"
-                : ""
-            }
-            onClick={() => setCurrent(index)}
-          />
-        ))}
-      </div>
-    </div>
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el || !useVideo || videoFailed) return;
+    if (isActive) {
+      el.currentTime = 0;
+      el.play().catch(() => setVideoFailed(true));
+    } else {
+      el.pause();
+    }
+  }, [isActive, useVideo, videoFailed]);
 
-    {/* Right Image */}
-    <div className="hero-image">
+  const showVideo = useVideo && !videoFailed && (isActive || isAdjacent);
+
+  return (
+    <>
       <img
-        src={slides[current].image}
-        alt={slides[current].title}
-        className="hero-main-image"
+        src={video.poster}
+        alt=""
+        className={`video-hero-poster${videoReady && isActive ? " is-hidden" : ""}`}
+        loading={isActive ? "eager" : "lazy"}
+        decoding="async"
+      />
+      {showVideo && (
+        <video
+          ref={videoRef}
+          className={`video-hero-video${videoReady ? " is-ready" : ""}`}
+          src={videoSrc}
+          poster={video.poster}
+          muted
+          playsInline
+          loop
+          preload={isActive ? "auto" : "metadata"}
+          onCanPlay={() => setVideoReady(true)}
+          onLoadedData={() => setVideoReady(true)}
+          onError={() => setVideoFailed(true)}
+        />
+      )}
+    </>
+  );
+}
+
+function HeroSlider() {
+  const [current, setCurrent] = useState(0);
+  const [useVideo, setUseVideo] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+  const navigate = useNavigate();
+
+  const goNext = useCallback(() => {
+    setCurrent((p) => (p + 1) % videos.length);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(goNext, VIDEO_INTERVAL);
+    return () => clearInterval(timer);
+  }, [goNext]);
+
+  useEffect(() => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const mobileMq = window.matchMedia("(max-width: 768px)");
+    const update = () => {
+      setIsMobile(mobileMq.matches);
+      setUseVideo(!reduced);
+    };
+    update();
+    mobileMq.addEventListener("change", update);
+    return () => mobileMq.removeEventListener("change", update);
+  }, []);
+
+  const scrollTo = (id) =>
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+
+  const nextIndex = (current + 1) % videos.length;
+
+  return (
+    <section className="video-hero" id="home">
+      <img
+        src={videos[0].poster}
+        alt=""
+        className="video-hero-poster-fallback"
+        aria-hidden="true"
+        decoding="async"
       />
 
-      <button
-        className="nav-btn prev"
-        onClick={prevSlide}
-      >
-        ❮
-      </button>
+      <div className="video-hero-media" aria-hidden="true">
+        {videos.map((video, i) => (
+          <motion.div
+            key={video.id}
+            className={`video-hero-layer${current === i ? " is-active" : ""}`}
+            initial={false}
+            animate={{ opacity: current === i ? 1 : 0 }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <HeroMediaLayer
+              video={video}
+              isActive={current === i}
+              isAdjacent={i === nextIndex}
+              useVideo={useVideo}
+              videoSrc={isMobile ? video.srcSd : video.src}
+            />
+          </motion.div>
+        ))}
+      </div>
 
-      <button
-        className="nav-btn next"
-        onClick={nextSlide}
-      >
-        ❯
-      </button>
-    </div>
-  </div>
-</section>
+      <div className="video-hero-overlay-base" aria-hidden="true" />
+      <div className="video-hero-overlay-gradient" aria-hidden="true" />
+      <div className="video-hero-glow" aria-hidden="true" />
 
+      <div className="container video-hero-inner">
+        <div className="video-hero-content">
+          <motion.div
+            className="video-hero-badge"
+            variants={fadeDown}
+            initial="hidden"
+            animate="visible"
+          >
+            <span className="video-hero-badge-dot" aria-hidden="true" />
+            Serving Communities Since 2009
+          </motion.div>
 
-);
+          <motion.h1 variants={wordContainer} initial="hidden" animate="visible">
+            <span className="video-hero-line">
+              {["Empowering", "Communities"].map((w) => (
+                <motion.span key={w} className="video-hero-word" variants={wordReveal}>
+                  {w}{" "}
+                </motion.span>
+              ))}
+            </span>
+            <span className="video-hero-line">
+              <motion.span className="video-hero-word" variants={wordReveal}>Through </motion.span>
+              <motion.span className="video-hero-highlight" variants={wordReveal}>Education</motion.span>
+              <motion.span className="video-hero-word" variants={wordReveal}> &</motion.span>
+            </span>
+            <span className="video-hero-line">
+              <motion.span className="video-hero-highlight" variants={wordReveal}>Social Service</motion.span>
+            </span>
+          </motion.h1>
+
+          <motion.p
+            className="video-hero-subtitle"
+            variants={fadeUp}
+            custom={0.38}
+            initial="hidden"
+            animate="visible"
+          >
+            Supporting students, conducting placement training, organizing medical camps,
+            and creating positive social impact through dedicated service initiatives.
+          </motion.p>
+
+          <motion.div
+            className="video-hero-actions"
+            variants={fadeUp}
+            custom={0.46}
+            initial="hidden"
+            animate="visible"
+          >
+            <CTAButton className="video-hero-btn-primary" onClick={() => scrollTo("education-programs")}>
+              Explore Programs
+            </CTAButton>
+            <CTAButton
+              variant="outline"
+              className="video-hero-btn-outline"
+              onClick={() => navigate("/contact")}
+            >
+              Become A Volunteer
+            </CTAButton>
+          </motion.div>
+
+          <motion.div
+            className="video-hero-metrics"
+            variants={statsContainer}
+            initial="hidden"
+            animate="visible"
+            aria-label="Trust impact metrics"
+          >
+            {metrics.map((m) => (
+              <motion.button
+                key={m.labelTop}
+                type="button"
+                className="hero-metric"
+                variants={statReveal}
+                whileHover={{ y: -2, transition: { duration: 0.2 } }}
+                onClick={() => scrollTo("impact-stats")}
+              >
+                <strong className="hero-metric-value">
+                  <AnimatedCounter value={m.value} />
+                </strong>
+                <span className="hero-metric-label">
+                  {m.labelTop}
+                  <br />
+                  {m.labelBottom}
+                </span>
+              </motion.button>
+            ))}
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 export default HeroSlider;

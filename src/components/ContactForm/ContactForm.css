@@ -127,42 +127,54 @@
 
 /* Button */
 
+.form-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.form-tabs button {
+  padding: 12px 24px;
+  border: 2px solid rgba(212, 175, 55, 0.35);
+  border-radius: 50px;
+  background: var(--white);
+  color: var(--text-dark);
+  font-family: var(--font-family);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.form-tabs button.active,
+.form-tabs button:hover {
+  background: var(--primary-red);
+  color: var(--white);
+  border-color: var(--primary-red);
+}
+
 .submit-btn {
-
   margin-top: 35px;
-
   display: inline-flex;
-
   justify-content: center;
   align-items: center;
   gap: 10px;
-
   padding: 16px 36px;
-
   border: none;
-
   border-radius: 50px;
-
-  background: #D62828;
-
-  color: #FFFFFF;
-
+  background: var(--theme-gradient);
+  background-size: 200% auto;
+  color: var(--white);
   font-size: 16px;
-
   font-weight: 600;
-
-  transition: .35s ease;
-
+  cursor: pointer;
+  transition: 0.35s ease;
 }
 
 .submit-btn:hover {
-
-  background: #F97316;
-
+  background-position: right center;
   transform: translateY(-3px);
-
-  box-shadow: 0 15px 35px rgba(214,40,40,.20);
-
+  box-shadow: 0 15px 35px rgba(214, 40, 40, 0.2);
 }
 
 /* Tablet */

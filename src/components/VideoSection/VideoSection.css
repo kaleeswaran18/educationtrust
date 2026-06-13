@@ -1,111 +1,43 @@
-.video-section {
-  background: #FFF8E1;
-  padding: 110px 0;
-  text-align: center;
-}
-
-/* Tag */
-
-.video-tag {
-  width: fit-content;
-  margin: 0 auto 25px;
-
-  background: #D62828;
-  color: #FFFFFF;
-}
-
-/* Heading */
-
-.video-section h2 {
-  color: #1A1A1A;
-  font-size: 52px;
-  font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 20px;
-}
-
-/* Description */
-
-.video-section p {
-  color: #6B7280;
-  max-width: 800px;
-  margin: 0 auto 50px;
-  font-size: 18px;
-  line-height: 1.9;
-}
-
-/* Video */
+.video-section { text-align: center; overflow: hidden; }
 
 .video-wrapper {
   overflow: hidden;
-  border-radius: 28px;
-
-  border: 3px solid #D4AF37;
-
-  background: #FFFFFF;
-
-  box-shadow: 0 25px 70px rgba(214, 40, 40, 0.10);
-
-  transition: 0.35s ease;
+  border-radius: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0;
+  background: var(--white);
+  position: relative;
 }
 
-.video-wrapper:hover {
-  transform: translateY(-8px);
-
-  box-shadow: 0 35px 80px rgba(214, 40, 40, 0.18);
+.video-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  padding: 2px;
+  background: var(--theme-gradient);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .video-wrapper iframe {
   width: 100%;
-  height: 700px;
+  height: 520px;
   border: none;
+  display: block;
+  border-radius: 22px;
 }
-
-/* Tablet */
 
 @media (max-width: 991px) {
-
-  .video-section {
-    padding: 80px 0;
-  }
-
-  .video-section h2 {
-    font-size: 40px;
-  }
-
-  .video-section p {
-    font-size: 17px;
-  }
-
-  .video-wrapper iframe {
-    height: 500px;
-  }
-
+  .video-wrapper iframe { height: 400px; }
 }
 
-/* Mobile */
-
 @media (max-width: 576px) {
-
-  .video-section {
-    padding: 60px 0;
-  }
-
-  .video-section h2 {
-    font-size: 32px;
-  }
-
-  .video-section p {
-    font-size: 16px;
-    margin-bottom: 35px;
-  }
-
-  .video-wrapper {
-    border-radius: 20px;
-  }
-
-  .video-wrapper iframe {
-    height: 300px;
-  }
-
+  .video-wrapper iframe { height: 260px; }
+  .video-wrapper { border-radius: 18px; }
 }

@@ -1,58 +1,59 @@
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { Link } from "react-router-dom";
 import "./ContactBanner.css";
 
 function ContactBanner() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-40px" });
+
   return (
-    <section className="contact-banner">
+    <section className="contact-banner bg-radial-warm" ref={ref}>
       <div className="contact-wrapper">
-
-        <div className="contact-left">
-
+        <motion.div
+          className="contact-left"
+          initial={{ opacity: 0, x: -30 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.7 }}
+        >
           <span className="breadcrumb">
-            Home / Contact
+            <Link to="/">Home</Link> / Contact
           </span>
 
-          <h1>Contact Us</h1>
+          <h1>
+            Let's Connect & <span className="gradient-text">Serve Together</span>
+          </h1>
 
           <p>
-            Kindly reach us to get the fastest
-            response and treatment.
+            Reach out for volunteer opportunities, program enquiries,
+            or to learn more about our trust activities and community services.
           </p>
+        </motion.div>
 
-        </div>
-
-        <div className="contact-right">
-
+        <motion.div
+          className="contact-right"
+          initial={{ opacity: 0, x: 30 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.15 }}
+        >
           <img
             src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=900"
-            alt="Doctor"
+            alt="Community support"
           />
 
-          <div className="doctor-card">
-
-            <div className="doctor-avatar"></div>
-
+          <div className="doctor-card glass-card">
+            <div className="doctor-avatar" />
             <div>
-
-              <h5>Dr. Surya Trust</h5>
-
-              <small>
-                Available Mon - Sat | 7AM - 9PM
-              </small>
-
+              <h5>Surya Trust Team</h5>
+              <small>Available Mon - Sat | 9AM - 6PM</small>
             </div>
-
           </div>
 
-          <div className="patient-card">
-
-            <h3>5000+</h3>
-
-            <span>Happy Students</span>
-
+          <div className="patient-card glass-card">
+            <h3>200+</h3>
+            <span>Active Volunteers</span>
           </div>
-
-        </div>
-
+        </motion.div>
       </div>
     </section>
   );

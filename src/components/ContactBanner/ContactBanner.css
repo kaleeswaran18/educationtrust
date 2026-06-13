@@ -3,6 +3,7 @@
   background: #FFF8E1;
   position: relative;
   overflow: visible;
+  padding-top: var(--nav-height, 64px);
 }
 
 .contact-wrapper {
@@ -32,10 +33,15 @@
   margin-bottom: 15px;
 }
 
+.breadcrumb a {
+  color: var(--primary-red);
+  text-decoration: none;
+}
+
 .contact-left h1 {
-  font-size: 68px;
-  font-weight: 700;
-  color: #1A1A1A;
+  font-size: clamp(2rem, 5vw, 4.25rem);
+  font-weight: 800;
+  color: var(--text-dark);
   margin-bottom: 20px;
   line-height: 1.1;
 }

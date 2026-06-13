@@ -1,95 +1,260 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import SectionHeader from "../shared/SectionHeader";
+import TrustIcon from "../shared/TrustIcons";
 import "./CategoryTabs.css";
 
-const categories = {
-  Medical: [
-    {
-      type: "image",
-      url: "https://images.unsplash.com/photo-1584515933487-779824d29309",
-    },
-    {
-      type: "video",
-      url: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    },
-  ],
+const galleryItems = [
+  // Videos (2.mp4 - 7.mp4)
+  {
+    id: 1,
+    title: "Free Medical Camp",
+    category: "Medical & Trust",
+    type: "video",
+    url: "/src/assets/images/2.mp4",
+    tall: true,
+  },
+  {
+    id: 2,
+    title: "Community Welfare Program",
+    category: "Medical & Trust",
+    type: "video",
+    url: "/src/assets/images/3.mp4",
+    tall: false,
+  },
+  {
+    id: 3,
+    title: "Healthcare Awareness",
+    category: "Medical & Trust",
+    type: "video",
+    url: "/src/assets/images/4.mp4",
+    tall: false,
+  },
+  {
+    id: 4,
+    title: "Medical Outreach",
+    category: "Medical & Trust",
+    type: "video",
+    url: "/src/assets/images/5.mp4",
+    tall: true,
+  },
+  {
+    id: 5,
+    title: "Trust Activities",
+    category: "Medical & Trust",
+    type: "video",
+    url: "/src/assets/images/6.mp4",
+    tall: false,
+  },
+  {
+    id: 6,
+    title: "Community Service",
+    category: "Medical & Trust",
+    type: "video",
+    url: "/src/assets/images/7.mp4",
+    tall: true,
+  },
 
-  Education: [
-    {
-      type: "image",
-      url: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
-    },
-    {
-      type: "video",
-      url: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    },
-  ],
+  // Images (8.jpg - 15.jpg)
+  {
+    id: 7,
+    title: "Medical Camp",
+    category: "Medical & Trust",
+    type: "image",
+    url: "/src/assets/images/8.jpg",
+    tall: false,
+  },
+  {
+    id: 8,
+    title: "Healthcare Service",
+    category: "Medical & Trust",
+    type: "image",
+    url: "/src/assets/images/9.jpeg",
+    tall: true,
+  },
+  {
+    id: 9,
+    title: "Trust Volunteers",
+    category: "Medical & Trust",
+    type: "image",
+    url: "/src/assets/images/10.png",
+    tall: false,
+  },
+ 
+  {
+    id: 11,
+    title: "Medical Awareness",
+    category: "Medical & Trust",
+    type: "image",
+    url: "/src/assets/images/12.png",
+    tall: true,
+  },
+  {
+    id: 12,
+    title: "Patient Care",
+    category: "Medical & Trust",
+    type: "image",
+    url: "/src/assets/images/13.png",
+    tall: false,
+  },
+  {
+    id: 13,
+    title: "Health Camp",
+    category: "Medical & Trust",
+    type: "image",
+    url: "/src/assets/images/14.png",
+    tall: true,
+  },
+  {
+    id: 14,
+    title: "Surya Trust",
+    category: "Medical & Trust",
+    type: "image",
+    url: "/src/assets/images/15.png",
+    tall: false,
+  },
+];
 
-  Trust: [
-    {
-      type: "image",
-      url: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c",
-    },
-  ],
-
-  Events: [
-    {
-      type: "image",
-      url: "https://images.unsplash.com/photo-1511578314322-379afb476865",
-    },
-  ],
+const filters = [
+  "All",
+  "Medical & Trust",
+  "Free Seminar",
+  "Placement Training",
+  
+];
+const isVideo = (url) => {
+  return /\.(mp4|webm|ogg|mov)$/i.test(url);
 };
 
 function CategoryTabs() {
-  const [activeTab, setActiveTab] =
-    useState("Medical");
+  const [activeFilter, setActiveFilter] = useState("All");
+  const [lightbox, setLightbox] = useState(null);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
+
+  const filtered = activeFilter === "All"
+    ? galleryItems
+    : galleryItems.filter((item) => item.category === activeFilter);
 
   return (
-    <section className="category-section">
+    <section className="event-gallery trust-section trust-section--cream" id="gallery" ref={ref}>
       <div className="container">
+        <SectionHeader
+          icon={<TrustIcon name="camera" size={28} />}
+          label="Event Gallery"
+          title="Moments of"
+          highlight="Impact"
+          description="A visual journey through our programs, camps, and community events."
+        />
 
-        <button className="primary-btn">
-          OUR GALLERY
-        </button>
-
-        <div className="tabs-wrapper">
-          {Object.keys(categories).map((tab) => (
+        <motion.div
+          className="gallery-filters"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+        >
+          {filters.map((f) => (
             <button
-              key={tab}
-              className={`tab-btn ${
-                activeTab === tab ? "active" : ""
-              }`}
-              onClick={() => setActiveTab(tab)}
+              key={f}
+              type="button"
+              className={`gallery-filter-btn ${activeFilter === f ? "active" : ""}`}
+              onClick={() => setActiveFilter(f)}
             >
-              {tab}
+              {f}
             </button>
           ))}
-        </div>
+        </motion.div>
 
-        <div className="media-grid">
-          {categories[activeTab].map(
-            (item, index) => (
-              <div
-                key={index}
-                className="media-card"
+        <motion.div
+          className="masonry-grid"
+          layout
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ delay: 0.2 }}
+        >
+          <AnimatePresence mode="popLayout">
+            {filtered.map((item, i) => (
+              <motion.button
+                key={item.id}
+                type="button"
+                className={`masonry-item ${item.tall ? "masonry-item--tall" : ""}`}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ delay: i * 0.05, duration: 0.4 }}
+                whileHover={{ y: -6 }}
+                onClick={() => setLightbox(item)}
               >
-                {item.type === "image" ? (
-                  <img
-                    src={item.url}
-                    alt=""
-                  />
-                ) : (
-                  <iframe
-                    src={item.url}
-                    title={`video-${index}`}
-                    allowFullScreen
-                  />
-                )}
-              </div>
-            )
-          )}
-        </div>
-
+                {isVideo(item.url) ? (
+  <video
+    src={item.url}
+    className="gallery-media"
+    muted
+    autoPlay
+    loop
+    playsInline
+    preload="metadata"
+  />
+) : (
+  <img
+    src={item.url}
+    alt={item.title}
+    loading="lazy"
+    className="gallery-media"
+  />
+)}
+                <div className="masonry-overlay">
+                  <span className="masonry-category">{item.category}</span>
+                  <h4>{item.title}</h4>
+                </div>
+              </motion.button>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
+
+      <AnimatePresence>
+        {lightbox && (
+          <motion.div
+            className="gallery-lightbox"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setLightbox(null)}
+          >
+            <motion.div
+              className="lightbox-content"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button type="button" className="lightbox-close" onClick={() => setLightbox(null)} aria-label="Close">
+                <TrustIcon name="times" size={18} />
+              </button>
+             {isVideo(lightbox.url) ? (
+  <video
+    src={lightbox.url}
+    controls
+    autoPlay
+    playsInline
+    className="lightbox-media"
+  />
+) : (
+  <img
+    src={lightbox.url}
+    alt={lightbox.title}
+    className="lightbox-media"
+  />
+)}
+              <div className="lightbox-info">
+                <span>{lightbox.category}</span>
+                <h3>{lightbox.title}</h3>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

@@ -1,33 +1,76 @@
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import TrustIcon from "../shared/TrustIcons";
 import "./ContactInfo.css";
 
-function ContactInfo() {
-  return (
-    <section className="contact-info-section">
-      <div className="container">
+const contactCards = [
+  { icon: "phone", title: "Phone", value: "+91 9876543210" },
+  { icon: "envelope", title: "Email", value: "info@suryatrust.com" },
+  { icon: "mapMarker", title: "Address", value: "Madurai, Tamil Nadu" },
+  { icon: "clock", title: "Working Hours", value: "Mon - Sat, 9:00 AM - 6:00 PM" },
+];
 
-        <h2 className="contact-info-title">
-          Find Us Here
-        </h2>
+const socialLinks = [
+  { label: "Facebook", icon: "f" },
+  { label: "Instagram", icon: "◎" },
+  { label: "YouTube", icon: "▶" },
+  { label: "LinkedIn", icon: "in" },
+];
+
+function ContactInfo() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
+
+  return (
+    <section className="contact-info-section" ref={ref}>
+      <div className="container">
+        <motion.h2
+          className="contact-info-title"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+        >
+          Find Us <span className="gradient-text">Here</span>
+        </motion.h2>
 
         <div className="contact-info-grid">
-
-          <div className="info-card">
-            <h4>📞 Phone</h4>
-            <p>+91 9876543210</p>
-          </div>
-
-          <div className="info-card">
-            <h4>✉️ Email</h4>
-            <p>info@suryatrust.com</p>
-          </div>
-
-          <div className="info-card">
-            <h4>📍 Location</h4>
-            <p>Madurai, Tamil Nadu</p>
-          </div>
-
+          {contactCards.map((card, i) => (
+            <motion.div
+              key={card.title}
+              className="info-card glass-card gradient-top-border"
+              initial={{ opacity: 0, y: 25 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: i * 0.1 }}
+              whileHover={{ y: -8 }}
+            >
+              <span className="info-icon">
+                <TrustIcon name={card.icon} size={24} />
+              </span>
+              <h4>{card.title}</h4>
+              <p>{card.value}</p>
+            </motion.div>
+          ))}
         </div>
 
+        <motion.div
+          className="social-links"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.4 }}
+        >
+          <h4>Follow Our Journey</h4>
+          <div className="social-icons">
+            {socialLinks.map((s) => (
+              <motion.a
+                key={s.label}
+                href="#"
+                aria-label={s.label}
+                whileHover={{ scale: 1.1, y: -4 }}
+              >
+                {s.icon}
+              </motion.a>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );
