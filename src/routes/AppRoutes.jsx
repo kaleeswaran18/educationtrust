@@ -27,6 +27,7 @@ function App() {
         <Route
           path="/admin/dashboard"
           element={<Dashboard />}
+          
         />
         <Route
   path="/admin/logo"
