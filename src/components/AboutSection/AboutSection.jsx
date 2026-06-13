@@ -83,8 +83,8 @@ function AboutSection() {
             <div className="why-trust-shape why-trust-shape--1" aria-hidden="true" />
             <div className="why-trust-shape why-trust-shape--2" aria-hidden="true" />
             <div className="why-trust-image-frame">
-             <img
-  src="../../src/assets/images/doctorsaravana.png"
+ <img
+  src="https://res.cloudinary.com/dbrymrvqu/image/upload/v1781362346/doctorsaravana_ad8lp1.png"
   alt="Dr. Saravanan"
   loading="lazy"
 />
