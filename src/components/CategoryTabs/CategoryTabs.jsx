@@ -77,7 +77,7 @@ const galleryItems = [
     title: "Trust Volunteers",
     category: "Medical & Trust",
     type: "image",
-    url: "/src/assets/images/10.png",
+    url: "https://res.cloudinary.com/dbrymrvqu/image/upload/v1781362313/10_rydwxw.png",
     tall: false,
   },
  
