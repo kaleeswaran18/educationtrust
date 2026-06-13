@@ -1,6 +1,6 @@
 .contact-banner {
   height: 500px;
-  background: linear-gradient(135deg, #dff1ff, #b9dcff);
+  background: #FFF8E1;
   position: relative;
   overflow: visible;
 }
@@ -27,7 +27,7 @@
 
 .breadcrumb {
   display: inline-block;
-  color: #6b7280;
+  color: #6B7280;
   font-size: 15px;
   margin-bottom: 15px;
 }
@@ -35,16 +35,16 @@
 .contact-left h1 {
   font-size: 68px;
   font-weight: 700;
-  color: #183153;
+  color: #1A1A1A;
   margin-bottom: 20px;
   line-height: 1.1;
 }
 
 .contact-left p {
   font-size: 18px;
-  color: #666;
-  line-height: 1.8;
-  max-width: 480px;
+  color: #6B7280;
+  line-height: 1.9;
+  max-width: 500px;
 }
 
 /* Right */
@@ -59,7 +59,7 @@
   align-items: flex-end;
 }
 
-/* Doctor Image */
+/* Image */
 
 .contact-right img {
   width: 480px;
@@ -76,85 +76,118 @@
 /* Doctor Card */
 
 .doctor-card {
+
   position: absolute;
 
   top: 95px;
   left: 10px;
 
-  background: #fff;
+  background: #FFFFFF;
 
   width: 300px;
 
-  padding: 16px 18px;
+  padding: 18px 20px;
 
-  border-radius: 18px;
+  border-radius: 20px;
 
   display: flex;
   align-items: center;
   gap: 15px;
 
-  box-shadow: 0 15px 40px rgba(0, 0, 0, .08);
+  border: 2px solid #D4AF37;
+
+  box-shadow: 0 20px 45px rgba(214,40,40,.08);
 
   z-index: 10;
+
 }
 
 .doctor-avatar {
-  width: 50px;
-  height: 50px;
+
+  width: 52px;
+  height: 52px;
+
   border-radius: 50%;
-  background: #67d3d0;
+
+  background: #D62828;
+
   flex-shrink: 0;
+
 }
 
 .doctor-card h5 {
+
   margin: 0;
+
   font-size: 20px;
-  color: #183153;
+
+  color: #1A1A1A;
+
   font-weight: 700;
+
 }
 
 .doctor-card small {
+
   display: block;
+
   margin-top: 6px;
-  color: #666;
+
+  color: #6B7280;
+
   font-size: 14px;
+
 }
 
 /* Patient Card */
 
 .patient-card {
+
   position: absolute;
 
   right: 0;
   top: 225px;
 
-  background: #fff;
+  background: #FFFFFF;
 
   width: 180px;
 
-  padding: 20px;
+  padding: 22px;
 
-  border-radius: 18px;
+  border-radius: 20px;
 
   text-align: center;
 
-  box-shadow: 0 15px 40px rgba(0, 0, 0, .08);
+  border: 2px solid #D4AF37;
+
+  box-shadow: 0 20px 45px rgba(214,40,40,.08);
 
   z-index: 10;
+
 }
 
 .patient-card h3 {
+
   margin: 0;
+
   font-size: 44px;
+
   font-weight: 700;
-  color: #183153;
+
+  color: #D62828;
+
 }
 
 .patient-card span {
+
   display: block;
+
   margin-top: 8px;
-  color: #666;
+
+  color: #6B7280;
+
   font-size: 15px;
+
 }
 
 /* Form Overlap */
@@ -167,110 +200,110 @@
 
 /* Tablet */
 
-@media (max-width:991px) {
+@media (max-width:991px){
 
-  .contact-banner {
-    height: auto;
-    padding: 70px 0 50px;
+  .contact-banner{
+    height:auto;
+    padding:70px 0 50px;
   }
 
-  .contact-wrapper {
-    flex-direction: column;
-    text-align: center;
+  .contact-wrapper{
+    flex-direction:column;
+    text-align:center;
   }
 
   .contact-left,
-  .contact-right {
-    width: 100%;
+  .contact-right{
+    width:100%;
   }
 
-  .contact-left h1 {
-    font-size: 46px;
+  .contact-left h1{
+    font-size:46px;
   }
 
-  .contact-left p {
-    margin: auto;
+  .contact-left p{
+    margin:auto;
   }
 
-  .contact-right {
-    height: 420px;
-    margin-top: 40px;
+  .contact-right{
+    height:420px;
+    margin-top:40px;
   }
 
-  .contact-right img {
-    width: 340px;
-    right: 50%;
-    transform: translateX(50%);
+  .contact-right img{
+    width:340px;
+    right:50%;
+    transform:translateX(50%);
   }
 
-  .doctor-card {
-    left: 30px;
-    top: 30px;
+  .doctor-card{
+    left:30px;
+    top:30px;
   }
 
-  .patient-card {
-    right: 30px;
-    top: 140px;
+  .patient-card{
+    right:30px;
+    top:140px;
   }
 
-  .contact-form-section {
-    margin-top: -50px;
+  .contact-form-section{
+    margin-top:-50px;
   }
 
 }
 
 /* Mobile */
 
-@media (max-width:576px) {
+@media (max-width:576px){
 
-  .contact-banner {
-    padding: 60px 0 40px;
+  .contact-banner{
+    padding:60px 0 40px;
   }
 
-  .contact-wrapper {
-    width: 94%;
+  .contact-wrapper{
+    width:94%;
   }
 
-  .contact-left h1 {
-    font-size: 36px;
+  .contact-left h1{
+    font-size:36px;
   }
 
-  .contact-left p {
-    font-size: 16px;
+  .contact-left p{
+    font-size:16px;
   }
 
-  .contact-right {
-    height: auto;
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .contact-right{
+    height:auto;
+    margin-top:30px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
   }
 
-  .contact-right img {
-    position: relative;
-    width: 250px;
-    transform: none;
-    right: auto;
+  .contact-right img{
+    position:relative;
+    width:250px;
+    right:auto;
+    transform:none;
   }
 
   .doctor-card,
-  .patient-card {
-    position: relative;
-    left: auto;
-    right: auto;
-    top: auto;
-    width: 100%;
-    max-width: 320px;
-    margin-top: 15px;
+  .patient-card{
+    position:relative;
+    left:auto;
+    right:auto;
+    top:auto;
+    width:100%;
+    max-width:320px;
+    margin-top:15px;
   }
 
-  .patient-card h3 {
-    font-size: 36px;
+  .patient-card h3{
+    font-size:36px;
   }
 
-  .contact-form-section {
-    margin-top: 30px;
+  .contact-form-section{
+    margin-top:30px;
   }
 
 }
