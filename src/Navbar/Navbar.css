@@ -1,9 +1,11 @@
 .custom-navbar {
-  background: #0c0f12;
+  background: #FFF8E1;
   position: sticky;
   top: 0;
   z-index: 999;
-  padding: 20px 0;
+  padding: 18px 0;
+  border-bottom: 2px solid #D4AF37;
+  box-shadow: 0 8px 25px rgba(214,40,40,.06);
 }
 
 .custom-navbar .container {
@@ -12,11 +14,18 @@
   justify-content: space-between;
 }
 
+/* Logo */
+
 .logo {
-  color: #fff;
+  color: #D62828;
   text-decoration: none;
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 700;
+  transition: .3s;
+}
+
+.logo:hover {
+  color: #F97316;
 }
 
 /* Desktop Menu */
@@ -24,116 +33,28 @@
 .desktop-menu {
   display: flex;
   list-style: none;
-  gap: 30px;
+  gap: 35px;
   margin: 0;
+  align-items: center;
 }
 
 .desktop-menu a {
-  color: white;
+  color: #1A1A1A;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 17px;
+  font-weight: 600;
+  transition: .3s;
 }
 
-/* Hamburger Button */
-
-.menu-btn {
-  width: 70px;
-  height: 70px;
-  border: 1px solid #7fded8;
-  border-radius: 0 0 25px 0;
-  background: transparent;
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
+.desktop-menu a:hover {
+  color: #F97316;
 }
 
-.menu-btn span {
-  width: 25px;
-  height: 2px;
-  background: #7fded8;
-  transition: 0.3s;
-}
-
-/* X Animation */
-
-.menu-btn.active span:nth-child(1) {
-  transform: rotate(45deg) translate(6px, 6px);
-}
-
-.menu-btn.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.menu-btn.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
-}
-
-/* Mobile Menu */
-
-.mobile-menu {
-  position: fixed;
-  top: 90px;
-  left: -100%;
-  width: 100%;
-  height: calc(100vh - 90px);
-  background: #0c0f12;
-  transition: 0.4s;
-  display: flex;
-  flex-direction: column;
-  padding: 40px;
-  gap: 25px;
-}
-
-.mobile-menu.show {
-  left: 0;
-}
-
-.mobile-menu a {
-  color: white;
-  text-decoration: none;
-  font-size: 22px;
-}
-
-/* Responsive */
-
-@media (max-width: 991px) {
-  .desktop-menu {
-    display: none;
-  }
-
-  .menu-btn {
-    display: flex;
-  }
-
-  .logo {
-    font-size: 22px;
-  }
-}
-
-@media (min-width: 992px) {
-  .mobile-menu {
-    display: none;
-  }
-}
-.desktop-menu a,
-.mobile-menu a {
-  color: #fff;
-  text-decoration: none;
-  transition: 0.3s ease;
-}
-
-.desktop-menu a:hover,
-.mobile-menu a:hover {
-  color: #9de9e4;
-}
+/* Active */
 
 .nav-active {
-  color: #9de9e4 !important;
+  color: #D62828 !important;
   position: relative;
-  font-weight: 600;
 }
 
 .nav-active::after {
@@ -142,6 +63,155 @@
   left: 0;
   bottom: -8px;
   width: 100%;
-  height: 2px;
-  background: #9de9e4;
+  height: 3px;
+  border-radius: 20px;
+  background: #D62828;
+}
+
+/* Hamburger */
+
+.menu-btn {
+
+  width: 60px;
+  height: 60px;
+
+  border: 2px solid #D62828;
+
+  border-radius: 0 0 22px 0;
+
+  background: #FFFFFF;
+
+  display: none;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 6px;
+
+  cursor: pointer;
+
+  transition: .3s;
+
+}
+
+.menu-btn:hover{
+  background:#D62828;
+}
+
+.menu-btn span{
+
+  width:24px;
+  height:2px;
+
+  background:#D62828;
+
+  transition:.3s;
+
+}
+
+.menu-btn:hover span{
+  background:#FFFFFF;
+}
+
+/* Animation */
+
+.menu-btn.active{
+  background:#D62828;
+}
+
+.menu-btn.active span{
+  background:#FFFFFF;
+}
+
+.menu-btn.active span:nth-child(1){
+  transform:rotate(45deg) translate(5px,5px);
+}
+
+.menu-btn.active span:nth-child(2){
+  opacity:0;
+}
+
+.menu-btn.active span:nth-child(3){
+  transform:rotate(-45deg) translate(6px,-6px);
+}
+
+/* Mobile Menu */
+
+.mobile-menu{
+
+  position:fixed;
+
+  top:85px;
+
+  left:-100%;
+
+  width:100%;
+
+  height:calc(100vh - 85px);
+
+  background:#FFF8E1;
+
+  transition:.35s;
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:25px;
+
+  padding:40px;
+
+  border-top:2px solid #D4AF37;
+
+}
+
+.mobile-menu.show{
+  left:0;
+}
+
+.mobile-menu a{
+
+  color:#1A1A1A;
+
+  text-decoration:none;
+
+  font-size:22px;
+
+  font-weight:600;
+
+  transition:.3s;
+
+}
+
+.mobile-menu a:hover{
+  color:#D62828;
+}
+
+/* Responsive */
+
+@media(max-width:991px){
+
+.desktop-menu{
+display:none;
+}
+
+.menu-btn{
+display:flex;
+}
+
+.logo{
+font-size:24px;
+}
+
+}
+
+@media(min-width:992px){
+
+.mobile-menu{
+display:none;
+}
+
 }
