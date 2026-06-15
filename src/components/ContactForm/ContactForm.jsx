@@ -14,22 +14,7 @@ function ContactForm() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <div className="form-tabs">
-            <button
-              type="button"
-              className={formType === "general" ? "active" : ""}
-              onClick={() => setFormType("general")}
-            >
-              General Enquiry
-            </button>
-            <button
-              type="button"
-              className={formType === "volunteer" ? "active" : ""}
-              onClick={() => setFormType("volunteer")}
-            >
-              Volunteer Inquiry
-            </button>
-          </div>
+      
 
           <form>
             <div className="form-grid">

@@ -18,41 +18,41 @@ const FALLBACK_BANNER_SLIDE = {
 const bannerSlides = [
   {
     id: 1,
-    mediaType: "video",
+    mediaType: "image",
     category: "Education",
-    src: "https://videos.pexels.com/video-files/7991576/7991576-hd_1920_1080_25fps.mp4",
+    src: "https://res.cloudinary.com/dbrymrvqu/image/upload/v1781362314/banner3.jpg_aiminx.jpg",
     srcSd: "https://videos.pexels.com/video-files/7991576/7991576-sd_640_360_25fps.mp4",
     poster: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1920&q=80&auto=format&fit=crop",
   },
   {
     id: 2,
-    mediaType: "video",
+    mediaType: "image",
     category: "Training",
-    src: "https://videos.pexels.com/video-files/6153735/6153735-hd_1920_1080_30fps.mp4",
+    src: "https://res.cloudinary.com/dbrymrvqu/image/upload/v1781506606/sir_yvh4lz.png",
     srcSd: "https://videos.pexels.com/video-files/6153735/6153735-sd_640_360_30fps.mp4",
     poster: "https://images.unsplash.com/photo-1551836022-deb49876cc6c?w=1920&q=80&auto=format&fit=crop",
   },
   {
     id: 3,
-    mediaType: "video",
+    mediaType: "image",
     category: "Medical",
-    src: "https://videos.pexels.com/video-files/6270530/6270530-hd_1920_1080_25fps.mp4",
+    src: "https://res.cloudinary.com/dbrymrvqu/image/upload/v1781511289/Screenshot_2026-06-15_090412_1_oydlzt.png",
     srcSd: "https://videos.pexels.com/video-files/6270530/6270530-sd_640_360_25fps.mp4",
     poster: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1920&q=80&auto=format&fit=crop",
   },
   {
     id: 4,
-    mediaType: "video",
+    mediaType: "image",
     category: "Community",
-    src: "https://videos.pexels.com/video-files/7578612/7578612-hd_1920_1080_30fps.mp4",
+    src: "https://res.cloudinary.com/dbrymrvqu/image/upload/v1781509444/Screenshot_2026-06-15_131338_gzhnt8.png",
     srcSd: "https://videos.pexels.com/video-files/7578612/7578612-sd_640_360_30fps.mp4",
     poster: "https://images.unsplash.com/photo-1521737710482-754986c8e335?w=1920&q=80&auto=format&fit=crop",
   },
   {
     id: 5,
-    mediaType: "video",
+    mediaType: "image",
     category: "Volunteer",
-    src: "https://videos.pexels.com/video-files/6646887/6646887-hd_1920_1080_25fps.mp4",
+    src: "https://res.cloudinary.com/dbrymrvqu/image/upload/v1781512989/ChatGPT_Image_Jun_15_2026_02_12_38_PM_nuwrf7.png",
     srcSd: "https://videos.pexels.com/video-files/6646887/6646887-sd_640_360_25fps.mp4",
     poster: "https://images.unsplash.com/photo-1559027615-cd4628904348?w=1920&q=80&auto=format&fit=crop",
   },
@@ -309,7 +309,7 @@ function HeroSlider({ slides = bannerSlides }) {
             animate="visible"
           >
             <span className="video-hero-badge-dot" aria-hidden="true" />
-            Serving Communities Since 2009
+           V'S CARE • SHAPING YOUNG MINDS
           </motion.div>
 
           <motion.h1 variants={wordContainer} initial="hidden" animate="visible">

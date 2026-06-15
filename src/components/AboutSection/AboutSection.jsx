@@ -3,134 +3,171 @@ import { motion, useInView } from "framer-motion";
 import SectionHeader from "../shared/SectionHeader";
 import CTAButton from "../shared/CTAButton";
 import "./AboutSection.css";
-import doctorsaravana from "../../assets/images/doctorsaravana.png";
+
 const pillars = [
   {
-    title: "Dr. Saravanan Hospital",
+    title: "Saravana Multi-Speciality Hospital Pvt Ltd",
     text: "Providing quality, affordable, and compassionate healthcare with advanced medical facilities, ensuring every patient receives exceptional treatment and personalized care.",
-    icon: "mission",
+    icon: "hospital",
   },
   {
-    title: "Placement & Training",
-    text: "Empowering students and young professionals through skill development, placement training, career guidance, and employment opportunities to build successful careers.",
-    icon: "vision",
+    title: "Dr. Saravana Academy",
+    text: "Empowering college students across Tamil Nadu through free career seminars, industry-oriented skill development, affordable placement training, and dedicated career support to help them achieve successful careers.",
+    icon: "academy",
   },
   {
     title: "Surya Trust",
-    text: "Committed to creating a better society by promoting education, healthcare, social welfare, and community development through impactful service initiatives.",
-    icon: "values",
+    text: "Dedicated to saving lives by providing free heart surgeries for children and offering high-quality medical treatments at up to 50% reduced costs for underprivileged and economically weaker families.",
+    icon: "heart",
   },
   {
     title: "Founder's Vision",
-    text: "Dr. P. Saravanan envisions a society where everyone has access to quality education, healthcare, and meaningful employment opportunities, empowering individuals to build a brighter future.",
-    icon: "commitment",
+    text: "Dr. P. Saravanan firmly believes that quality education, accessible healthcare, and meaningful employment are the three pillars of a better society. Guided by this vision, he continues to provide free and affordable initiatives that empower individuals, uplift families, and create lasting positive change across communities.",
+    icon: "vision",
   },
 ];
 
-function PillarIcon({ type }) {
-  const icons = {
-    mission: (
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.75" />
-        <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.75" />
-        <path d="M12 3v3M12 18v3M3 12h3M18 12h3" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
-      </svg>
-    ),
-    vision: (
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" stroke="currentColor" strokeWidth="1.75" />
-        <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.75" />
-      </svg>
-    ),
-    values: (
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z" stroke="currentColor" strokeWidth="1.75" strokeLinejoin="round" />
-      </svg>
-    ),
-    commitment: (
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M4 18V6l8-3 8 3v12l-8 3-8-3z" stroke="currentColor" strokeWidth="1.75" strokeLinejoin="round" />
-        <path d="M12 3v18M4 6l8 3 8-3" stroke="currentColor" strokeWidth="1.75" strokeLinejoin="round" />
-      </svg>
-    ),
-  };
-  return <span className="pillar-icon">{icons[type]}</span>;
+function PillarIcon({ type }) { const icons = { hospital: ( <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"> <path d="M7 3v18M17 3v18M5 7h14M5 21h14M10 10h4M12 8v4M9 21v-4h6v4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /> </svg> ), academy: ( <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"> <path d="M2 9l10-5 10 5-10 5-10-5z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" /> <path d="M6 11v4c0 2 3 4 6 4s6-2 6-4v-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" /> </svg> ), heart: ( <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"> <path d="M12 21s-7-4.6-9-9c-1.2-2.8.4-6 3.7-6 2 0 3.2 1 4.3 2.6C12.1 7 13.3 6 15.3 6c3.3 0 4.9 3.2 3.7 6-2 4.4-9 9-9 9z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" /> <path d="M12 9v6M9 12h6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" /> </svg> ), vision: ( <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"> <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" stroke="currentColor" strokeWidth="1.8" /> <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.8" /> </svg> ), }; return <span className="pillar-icon">{icons[type]}</span>; }
+
+function PillarCard({ pillar, delay, isInView }) {
+  return (
+    <motion.div
+      className="pillar-card"
+      initial={{ opacity: 0, y: 25 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ delay, duration: 0.6 }}
+      whileHover={{ y: -6 }}
+    >
+      <PillarIcon type={pillar.icon} />
+      <div>
+        <h4>{pillar.title}</h4>
+        <p>{pillar.text}</p>
+      </div>
+    </motion.div>
+  );
 }
 
-function AboutSection() {
+export default function AboutSection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const isInView = useInView(ref, {
+    once: true,
+    margin: "-60px",
+  });
 
   return (
-    <section className="why-trust trust-section trust-section--white" id="about" ref={ref}>
-      <div className="why-trust-bg" aria-hidden="true" />
-      <div className="why-trust-accent-line" aria-hidden="true" />
+    <section
+      className="why-trust trust-section trust-section--white"
+      id="about"
+      ref={ref}
+    >
       <div className="container">
+
         <SectionHeader
-  label="About Our Founder"
-  title="A Vision to Empower"
-  highlight="Every Life"
-  description="Dr. Saravanan's dream is to build a society where no one is left behind by ensuring access to quality education, healthcare, and meaningful employment opportunities. Through dedication, compassion, and selfless service, he strives to empower individuals and create a lasting positive impact on society."
-/>
+          label="About Our Founder"
+          title="A Vision to Empower"
+          highlight="Every Life"
+          description="Dr. Saravanan's dream is to build a society where no one is left behind by ensuring access to quality education, healthcare, and meaningful employment opportunities."
+        />
 
-        <div className="why-trust-grid">
-          <motion.div
-            className="why-trust-visual"
-            initial={{ opacity: 0, x: -40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <div className="why-trust-shape why-trust-shape--1" aria-hidden="true" />
-            <div className="why-trust-shape why-trust-shape--2" aria-hidden="true" />
-            <div className="why-trust-image-frame">
- <img
-  src="https://res.cloudinary.com/dbrymrvqu/image/upload/v1781362346/doctorsaravana_ad8lp1.png"
-  alt="Dr. Saravanan"
-  loading="lazy"
-/>
-              <div className="why-trust-image-badge">
-                <strong>22+</strong>
-                <span>Years of Service</span>
-              </div>
-            </div>
-            <div className="why-trust-trust-bar">
-              <span className="why-trust-trust-dot" aria-hidden="true" />
-              <p>Trusted by communities across Tamil Nadu</p>
-            </div>
-          </motion.div>
+        <div className="founder-layout">
 
-          <motion.div
-            className="why-trust-content"
-            initial={{ opacity: 0, x: 40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <div className="why-trust-pillars">
-              {pillars.map((p, i) => (
-                <motion.div
-                  key={p.title}
-                  className="pillar-card"
-                  initial={{ opacity: 0, y: 18 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.15 + i * 0.08, duration: 0.55 }}
-                  whileHover={{ y: -4 }}
+          {/* ---------- ROW 1 ---------- */}
+
+          <div className="founder-row">
+
+            <motion.div
+              className="founder-media"
+              initial={{ opacity: 0, x: -40 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: .7 }}
+            >
+
+              <div className="media-frame">
+
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="founder-video"
                 >
-                  <PillarIcon type={p.icon} />
-                  <div>
-                    <h4>{p.title}</h4>
-                    <p>{p.text}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-            <CTAButton onClick={() => document.getElementById("impact-stats")?.scrollIntoView({ behavior: "smooth" })}>
+                  <source
+                    src="https://res.cloudinary.com/dbrymrvqu/video/upload/v1781502385/Create_a_cinematic_AI_animatio_om745e.mp4"
+                    type="video/mp4"
+                  />
+                </video>
+
+              </div>
+
+            </motion.div>
+
+            <motion.div
+              className="card-column"
+              initial={{ opacity: 0, x: 40 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: .7 }}
+            >
+
+              <PillarCard pillar={pillars[0]} delay={0.2} isInView={isInView}/>
+              <PillarCard pillar={pillars[1]} delay={0.3} isInView={isInView}/>
+
+            </motion.div>
+
+          </div>
+
+          {/* ---------- ROW 2 ---------- */}
+
+          <div className="founder-row">
+
+            <motion.div
+              className="founder-media"
+              initial={{ opacity: 0, x: -40 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: .7 }}
+            >
+
+              <div className="media-frame">
+
+                <img
+                  src="https://res.cloudinary.com/dbrymrvqu/image/upload/v1781362346/doctorsaravana_ad8lp1.png"
+                  alt="Founder"
+                />
+
+              </div>
+
+            </motion.div>
+
+            <motion.div
+              className="card-column"
+              initial={{ opacity: 0, x: 40 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: .7 }}
+            >
+
+              <PillarCard pillar={pillars[2]} delay={0.4} isInView={isInView}/>
+              <PillarCard pillar={pillars[3]} delay={0.5} isInView={isInView}/>
+
+            </motion.div>
+
+          </div>
+
+          <div className="founder-btn">
+
+            {/* <CTAButton
+              onClick={() =>
+                document
+                  .getElementById("impact-stats")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
               See Our Impact
-            </CTAButton>
-          </motion.div>
+            </CTAButton> */}
+
+          </div>
+
         </div>
+
       </div>
     </section>
   );
 }
-
-export default AboutSection;

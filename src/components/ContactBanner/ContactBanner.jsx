@@ -21,12 +21,12 @@ function ContactBanner() {
           </span>
 
           <h1>
-            Let's Connect & <span className="gradient-text">Serve Together</span>
+            
+            V's Care  <span className="gradient-text">& Let's Grow Together</span>
           </h1>
 
           <p>
-            Reach out for volunteer opportunities, program enquiries,
-            or to learn more about our trust activities and community services.
+           Empowering students and young professionals with industry-ready skills, career guidance, placement training, and real-world learning to achieve successful careers.
           </p>
         </motion.div>
 
@@ -41,18 +41,6 @@ function ContactBanner() {
             alt="Community support"
           />
 
-          {/* <div className="doctor-card glass-card">
-            <div className="doctor-avatar" />
-            <div>
-              <h5>Surya Trust Team</h5>
-              <small>Available Mon - Sat | 9AM - 6PM</small>
-            </div>
-          </div>
-
-          <div className="patient-card glass-card">
-            <h3>200+</h3>
-            <span>Active Volunteers</span>
-          </div> */}
         </motion.div>
       </div>
     </section>

@@ -48,11 +48,11 @@ function UpcomingActivities() {
           ))}
         </div>
 
-        <div className="activities-cta">
+        {/* <div className="activities-cta">
           <CTAButton onClick={() => document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" })}>
             View All Activities
           </CTAButton>
-        </div>
+        </div> */}
       </div>
     </section>
   );

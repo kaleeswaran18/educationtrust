@@ -70,10 +70,10 @@ function SuccessStories() {
       <div className="container">
         <SectionHeader
           icon={<TrustIcon name="star" size={28} />}
-          label="Success Stories"
-          title="Lives"
-          highlight="Transformed"
-          description="Real stories from beneficiaries and volunteers whose lives were changed through our programs."
+          label="Empowering the Youth, Building the Nation"
+          title="V's Care Youngsters"
+          highlight="Think Beyond the Impossible"
+          description="Dr. P. Saravanan firmly believes that today's youth are the foundation of tomorrow's nation. Through quality education, skill development, healthcare, and employment opportunities, he is committed to empowering every young individual to build a stronger and more prosperous society..."
         />
 
         <div className="stories-layout">
