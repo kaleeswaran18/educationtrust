@@ -4,10 +4,10 @@ import TrustIcon from "../shared/TrustIcons";
 import "./ContactInfo.css";
 
 const contactCards = [
-  { icon: "phone", title: "Phone", value: "+91 9876543210" },
-  { icon: "envelope", title: "Email", value: "info@suryatrust.com" },
-  { icon: "mapMarker", title: "Address", value: "Madurai, Tamil Nadu" },
-  { icon: "clock", title: "Working Hours", value: "Mon - Sat, 9:00 AM - 6:00 PM" },
+  { icon: "phone", title: "Phone", value: "+91 6380319582" },
+  { icon: "envelope", title: "Email", value: "Drsaravanaacademy@gmail.com" },
+  { icon: "mapMarker", title: "Address", value: "7-A Maruthupandiar Nagar, 4th Main Road, Narimedu, Madurai - 625002" },
+  { icon: "clock", title: "Working Hours", value: "Mon - Sat, 10:00 AM - 10:00 PM" },
 ];
 
 const socialLinks = [
