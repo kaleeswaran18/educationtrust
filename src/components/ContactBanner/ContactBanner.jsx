@@ -37,11 +37,11 @@ function ContactBanner() {
           transition={{ duration: 0.7, delay: 0.15 }}
         >
           <img
-            src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=900"
+            src="https://res.cloudinary.com/dbrymrvqu/image/upload/v1781498416/ChatGPT_Image_Jun_15_2026_10_09_39_AM_ze1gck.png"
             alt="Community support"
           />
 
-          <div className="doctor-card glass-card">
+          {/* <div className="doctor-card glass-card">
             <div className="doctor-avatar" />
             <div>
               <h5>Surya Trust Team</h5>
@@ -52,7 +52,7 @@ function ContactBanner() {
           <div className="patient-card glass-card">
             <h3>200+</h3>
             <span>Active Volunteers</span>
-          </div>
+          </div> */}
         </motion.div>
       </div>
     </section>
