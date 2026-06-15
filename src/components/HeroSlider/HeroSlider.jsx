@@ -7,9 +7,18 @@ import AnimatedCounter from "../shared/AnimatedCounter";
 
 const VIDEO_INTERVAL = 7000;
 
-const videos = [
+const FALLBACK_BANNER_SLIDE = {
+  id: "fallback",
+  mediaType: "video",
+  src: "https://videos.pexels.com/video-files/7991576/7991576-hd_1920_1080_25fps.mp4",
+  srcSd: "https://videos.pexels.com/video-files/7991576/7991576-sd_640_360_25fps.mp4",
+  poster: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1920&q=80&auto=format&fit=crop",
+};
+
+const bannerSlides = [
   {
     id: 1,
+    mediaType: "video",
     category: "Education",
     src: "https://videos.pexels.com/video-files/7991576/7991576-hd_1920_1080_25fps.mp4",
     srcSd: "https://videos.pexels.com/video-files/7991576/7991576-sd_640_360_25fps.mp4",
@@ -17,6 +26,7 @@ const videos = [
   },
   {
     id: 2,
+    mediaType: "video",
     category: "Training",
     src: "https://videos.pexels.com/video-files/6153735/6153735-hd_1920_1080_30fps.mp4",
     srcSd: "https://videos.pexels.com/video-files/6153735/6153735-sd_640_360_30fps.mp4",
@@ -24,6 +34,7 @@ const videos = [
   },
   {
     id: 3,
+    mediaType: "video",
     category: "Medical",
     src: "https://videos.pexels.com/video-files/6270530/6270530-hd_1920_1080_25fps.mp4",
     srcSd: "https://videos.pexels.com/video-files/6270530/6270530-sd_640_360_25fps.mp4",
@@ -31,6 +42,7 @@ const videos = [
   },
   {
     id: 4,
+    mediaType: "video",
     category: "Community",
     src: "https://videos.pexels.com/video-files/7578612/7578612-hd_1920_1080_30fps.mp4",
     srcSd: "https://videos.pexels.com/video-files/7578612/7578612-sd_640_360_30fps.mp4",
@@ -38,12 +50,67 @@ const videos = [
   },
   {
     id: 5,
+    mediaType: "video",
     category: "Volunteer",
     src: "https://videos.pexels.com/video-files/6646887/6646887-hd_1920_1080_25fps.mp4",
     srcSd: "https://videos.pexels.com/video-files/6646887/6646887-sd_640_360_25fps.mp4",
     poster: "https://images.unsplash.com/photo-1559027615-cd4628904348?w=1920&q=80&auto=format&fit=crop",
   },
 ];
+
+function getSlideMediaType(slide) {
+  if (slide?.mediaType === "video" || slide?.mediaType === "image") {
+    return slide.mediaType;
+  }
+  if (slide?.type === "video" || slide?.type === "image") {
+    return slide.type;
+  }
+
+  const mediaSrc = slide?.src || slide?.image || slide?.video || "";
+  if (/\.(mp4|webm|ogg|mov)(\?|$)/i.test(mediaSrc)) {
+    return "video";
+  }
+  return mediaSrc ? "image" : "image";
+}
+
+function getSlideImageSrc(slide) {
+  return slide?.poster || slide?.image || slide?.src || FALLBACK_BANNER_SLIDE.poster;
+}
+
+function getSlideVideoSrc(slide, isMobile) {
+  if (isMobile && slide?.srcSd) return slide.srcSd;
+  return slide?.src || slide?.video || FALLBACK_BANNER_SLIDE.src;
+}
+
+function resolveBannerSlides(slides) {
+  if (!Array.isArray(slides) || slides.length === 0) {
+    return [FALLBACK_BANNER_SLIDE];
+  }
+
+  return slides.map((slide, index) => {
+    const mediaType = getSlideMediaType(slide);
+    const imageSrc = getSlideImageSrc(slide);
+
+    if (mediaType === "video") {
+      return {
+        ...slide,
+        id: slide.id ?? index + 1,
+        mediaType: "video",
+        poster: imageSrc,
+        src: slide.src || slide.video || FALLBACK_BANNER_SLIDE.src,
+        srcSd: slide.srcSd || slide.src || slide.video || FALLBACK_BANNER_SLIDE.srcSd,
+      };
+    }
+
+    return {
+      ...slide,
+      id: slide.id ?? index + 1,
+      mediaType: "image",
+      src: slide.src || slide.image || imageSrc || FALLBACK_BANNER_SLIDE.poster,
+      poster: imageSrc,
+    };
+  });
+}
 
 const metrics = [
   { value: "10000+", labelTop: "Students", labelBottom: "Supported" },
@@ -99,33 +166,47 @@ const statReveal = {
   },
 };
 
-function HeroMediaLayer({ video, isActive, isAdjacent, useVideo, videoSrc }) {
+function HeroMediaLayer({ slide, isActive, isAdjacent, useVideo, videoSrc }) {
   const videoRef = useRef(null);
   const [videoReady, setVideoReady] = useState(false);
   const [videoFailed, setVideoFailed] = useState(false);
+  const isVideoSlide = getSlideMediaType(slide) === "video";
+  const imageSrc = getSlideImageSrc(slide);
 
   useEffect(() => {
     setVideoReady(false);
     setVideoFailed(false);
-  }, [video.id]);
+  }, [slide.id]);
 
   useEffect(() => {
     const el = videoRef.current;
-    if (!el || !useVideo || videoFailed) return;
+    if (!el || !isVideoSlide || !useVideo || videoFailed) return;
     if (isActive) {
       el.currentTime = 0;
       el.play().catch(() => setVideoFailed(true));
     } else {
       el.pause();
     }
-  }, [isActive, useVideo, videoFailed]);
+  }, [isActive, isVideoSlide, useVideo, videoFailed]);
+
+  if (!isVideoSlide) {
+    return (
+      <img
+        src={slide.src || imageSrc}
+        alt=""
+        className="video-hero-poster"
+        loading={isActive ? "eager" : "lazy"}
+        decoding="async"
+      />
+    );
+  }
 
   const showVideo = useVideo && !videoFailed && (isActive || isAdjacent);
 
   return (
     <>
       <img
-        src={video.poster}
+        src={imageSrc}
         alt=""
         className={`video-hero-poster${videoReady && isActive ? " is-hidden" : ""}`}
         loading={isActive ? "eager" : "lazy"}
@@ -136,11 +217,12 @@ function HeroMediaLayer({ video, isActive, isAdjacent, useVideo, videoSrc }) {
           ref={videoRef}
           className={`video-hero-video${videoReady ? " is-ready" : ""}`}
           src={videoSrc}
-          poster={video.poster}
+          poster={imageSrc}
+          autoPlay
           muted
           playsInline
           loop
-          preload={isActive ? "auto" : "metadata"}
+          preload="auto"
           onCanPlay={() => setVideoReady(true)}
           onLoadedData={() => setVideoReady(true)}
           onError={() => setVideoFailed(true)}
@@ -150,15 +232,16 @@ function HeroMediaLayer({ video, isActive, isAdjacent, useVideo, videoSrc }) {
   );
 }
 
-function HeroSlider() {
+function HeroSlider({ slides = bannerSlides }) {
   const [current, setCurrent] = useState(0);
   const [useVideo, setUseVideo] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const navigate = useNavigate();
+  const heroSlides = resolveBannerSlides(slides);
 
   const goNext = useCallback(() => {
-    setCurrent((p) => (p + 1) % videos.length);
-  }, []);
+    setCurrent((p) => (p + 1) % heroSlides.length);
+  }, [heroSlides.length]);
 
   useEffect(() => {
     const timer = setInterval(goNext, VIDEO_INTERVAL);
@@ -180,12 +263,13 @@ function HeroSlider() {
   const scrollTo = (id) =>
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
-  const nextIndex = (current + 1) % videos.length;
+  const nextIndex = (current + 1) % heroSlides.length;
+  const fallbackPoster = getSlideImageSrc(heroSlides[0]);
 
   return (
     <section className="video-hero" id="home">
       <img
-        src={videos[0].poster}
+        src={fallbackPoster}
         alt=""
         className="video-hero-poster-fallback"
         aria-hidden="true"
@@ -193,20 +277,20 @@ function HeroSlider() {
       />
 
       <div className="video-hero-media" aria-hidden="true">
-        {videos.map((video, i) => (
+        {heroSlides.map((slide, i) => (
           <motion.div
-            key={video.id}
+            key={slide.id}
             className={`video-hero-layer${current === i ? " is-active" : ""}`}
             initial={false}
             animate={{ opacity: current === i ? 1 : 0 }}
             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           >
             <HeroMediaLayer
-              video={video}
+              slide={slide}
               isActive={current === i}
               isAdjacent={i === nextIndex}
               useVideo={useVideo}
-              videoSrc={isMobile ? video.srcSd : video.src}
+              videoSrc={getSlideVideoSrc(slide, isMobile)}
             />
           </motion.div>
         ))}
