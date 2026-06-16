@@ -6,7 +6,7 @@ function GoogleMap() {
       <div className="container">
         <div className="map-wrapper">
           <iframe
-            title="Google Map"
+            title="Googlee Map"
             src="https://maps.google.com/maps?q=7-A%20Maruthupandiar%20Nagar,%204th%20Main%20Road,%20Narimedu,%20Madurai%20-%20625002&z=17&output=embed"
             loading="lazy"
             width="100%"
