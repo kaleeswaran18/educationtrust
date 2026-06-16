@@ -302,15 +302,46 @@ function HeroSlider({ slides = bannerSlides }) {
 
       <div className="container video-hero-inner">
         <div className="video-hero-content">
-          <motion.div
-            className="video-hero-badge"
-            variants={fadeDown}
-            initial="hidden"
-            animate="visible"
-          >
-            <span className="video-hero-badge-dot" aria-hidden="true" />
-           V'S CARE • SHAPING YOUNG MINDS
-          </motion.div>
+<motion.div
+  className="video-hero-badge"
+  variants={fadeDown}
+  initial="hidden"
+  animate="visible"
+>
+  <span className="video-hero-badge-dot" aria-hidden="true" />
+
+  <span
+    style={{
+      fontFamily: '"Playfair Display", serif',
+      fontStyle: "italic",
+      fontSize: "22px",
+      fontWeight: 700,
+      color: "#ffffff",
+    }}
+  >
+    V'S CARE
+  </span>
+
+  <span
+    style={{
+      margin: "0 8px",
+      opacity: 0.8,
+    }}
+  >
+    •
+  </span>
+
+  <span
+    style={{
+      fontSize: "15px",
+      fontWeight: 600,
+      letterSpacing: "1.5px",
+      textTransform: "uppercase",
+    }}
+  >
+    SHAPING YOUNG MINDS
+  </span>
+</motion.div>
 
           <motion.h1 variants={wordContainer} initial="hidden" animate="visible">
             <span className="video-hero-line">
