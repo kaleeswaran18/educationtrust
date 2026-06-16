@@ -25,7 +25,7 @@ function Navbar() {
     <nav className={`custom-navbar ${scrolled ? "scrolled" : ""} ${atTop ? "at-top" : ""}`}>
       <div className="container">
         <NavLink className="logo" to="/">
-          <span className="logo-text">SURYA TRUST</span>
+          <span className="logo-text">Dr.saravana academy</span>
         </NavLink>
 
         <ul className="desktop-menu">
