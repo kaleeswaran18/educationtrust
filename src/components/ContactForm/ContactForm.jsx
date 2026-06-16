@@ -167,7 +167,7 @@ function ContactForm() {
               )}
 
               <div className="form-group full-width">
-                <label>Message</label>
+                <label>Messaghhhhe</label>
 
                 <textarea
                   rows="5"
