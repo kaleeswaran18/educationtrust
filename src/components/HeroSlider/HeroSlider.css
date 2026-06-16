@@ -506,3 +506,72 @@
   border-radius: 999px;
   backdrop-filter: blur(10px);
 }
+@media (max-width: 576px) {
+
+  .video-hero-badge{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    width: 100%;
+    max-width: 100%;
+
+    padding: 12px 16px;
+
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 1px;
+
+    white-space: normal;      /* wrap aagum */
+    word-break: break-word;
+    overflow: visible;
+
+    border-radius: 18px;
+  }
+
+  .video-hero-badge-dot{
+    flex-shrink: 0;
+  }
+
+}
+.video-hero-badge,
+.video-hero-badge *{
+    opacity: 1 !important;
+    color: #ff5a1f !important;
+    -webkit-text-fill-color: #ff5a1f !important;
+    filter: none !important;
+    text-shadow: none !important;
+}
+/* Mobile Badge */
+@media (max-width: 768px) {
+
+  .video-hero-badge{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;      /* line break aagadhu */
+    white-space: nowrap;    /* ore line */
+    width: fit-content;
+    max-width: 100%;
+    padding: 10px 16px;
+    gap: 8px;
+    font-size: 12px;
+    overflow: hidden;
+  }
+
+  .video-hero-badge .badge-brand{
+    color: #ff5a1f !important;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .video-hero-badge .badge-text{
+    color: #ff5a1f !important;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+}

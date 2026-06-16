@@ -314,7 +314,7 @@ function HeroSlider({ slides = bannerSlides }) {
     style={{
       fontFamily: '"Playfair Display", serif',
       fontStyle: "italic",
-      fontSize: "22px",
+      fontSize: "16px",
       fontWeight: 700,
       color: "#ffffff",
     }}
@@ -335,7 +335,7 @@ function HeroSlider({ slides = bannerSlides }) {
     style={{
       fontSize: "15px",
       fontWeight: 600,
-      letterSpacing: "1.5px",
+      letterSpacing: "0.5px",
       textTransform: "uppercase",
     }}
   >
