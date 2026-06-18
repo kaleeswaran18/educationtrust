@@ -5,8 +5,9 @@
 
 .contact-banner{
     background:#FFF8E1;
-    padding:90px 0 70px;
+    padding:calc(var(--nav-height, 64px) + 90px) 0 70px;
     overflow:hidden;
+    margin-top: 0;
 }
 
 .contact-wrapper{
@@ -90,7 +91,7 @@
 
 .contact-banner{
 
-    padding:70px 0 50px;
+    padding:calc(var(--nav-height, 64px) + 70px) 0 50px;
 
 }
 
@@ -132,7 +133,7 @@
 
 .contact-banner{
 
-    padding:55px 0 40px;
+    padding:calc(var(--nav-height, 64px) + 55px) 0 40px;
 
 }
 

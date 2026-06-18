@@ -310,16 +310,9 @@ function HeroSlider({ slides = bannerSlides }) {
 >
   <span className="video-hero-badge-dot" aria-hidden="true" />
 
-  <span
-    style={{
-      fontFamily: '"Playfair Display", serif',
-      fontStyle: "italic",
-      fontSize: "16px",
-      fontWeight: 700,
-      color: "#ffffff",
-    }}
-  >
-    V'S CARE
+  <span className="video-hero-badge-label">
+    <span className="video-hero-badge-initial" aria-hidden="true">V</span>
+    <span className="video-hero-badge-copy">'S CARE</span>
   </span>
 
   <span
